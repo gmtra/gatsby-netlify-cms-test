@@ -4,7 +4,7 @@ module.exports = {
     title: `Gatsby Starter Personal Blog`,
     author: `Kyle Matthews`,
     description: `A starter personal blog with styled components, dark mode, and Netlify CMS.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://drizzle-cms-test.netlify.com/`,
     social: {
       twitter: `kylemathews`,
     },
@@ -28,7 +28,7 @@ module.exports = {
       resolve: `gatsby-plugin-netlify-identity`,
       options: {
         url: `https://drizzle-cms-test.netlify.com/`
-      }
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
