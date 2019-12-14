@@ -1,8 +1,32 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import IdentityModal, { useIdentityContext } from "react-netlify-identity-widget"
+import "react-netlify-identity-widget/styles.css" // delete if you want to bring your own CSS
 
 import { rhythm, scale } from "../utils/typography"
+
+const NLogin = () => {
+  const identity = useIdentityContext()
+  const [dialog, setDialog] = React.useState(false)
+  const name =
+    (identity && identity.user && identity.user.user_metadata && identity.user.user_metadata.name) || "NoName"
+
+  console.log(JSON.stringify(identity))
+  const isLoggedIn = identity && identity.isLoggedIn
+  return (
+    <>
+      <nav style={{ background: "green" }}>
+        {" "}
+        Login Status:
+        <button className="btn" onClick={() => setDialog(true)}>
+          {isLoggedIn ? `Hello ${name}, Log out here!` : "LOG IN"}
+        </button>
+      </nav>
+      <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
+    </>
+  )
+}
 
 class Layout extends React.Component {
   render() {
@@ -64,6 +88,7 @@ class Layout extends React.Component {
           }}
         >
           <header>{header}</header>
+          <NLogin />
           <main>{children}</main>
         </div>
         <Footer>
